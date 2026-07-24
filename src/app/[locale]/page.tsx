@@ -123,34 +123,56 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <div className="flex flex-col flex-grow">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-surface-container-low py-24 md:py-36 border-b border-outline-variant">
-        {/* Subtle grid pattern background */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(#8e706b 1.5px, transparent 1.5px)", backgroundSize: "24px 24px" }}></div>
-        
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center space-y-4 animate-fade-in-up">
-          <Badge variant="primary" className="mb-stack-sm tracking-widest">
+      <section className="relative overflow-hidden py-32 md:py-48 border-b border-outline-variant bg-black">
+        {/* Full-width Heritage Backdrop Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAygFvbbqJB_fa_V2A_Fl4SHw-rgNMKLfLbmE00LGYCSdmiLxCTlgJeRjOiwygNqC-SAnxoQkzmW4p6O_hNoG-p9kygr5if7-fLVGMAaPxFFsXyEJyVe4PsdtK48G0Op-6vREhdjhOLZmFT-Fz9lX9-sVpDR4lug3Cn_CcNEBxPPPPDetQLhMhaFj2QV2KUbKqoEN1Dc-eA6iWA8Ih4EDgOwtybSpjJgs1ImdKFVbA_b1GmeclbIqNm97AI3aoF84yNuBPW01Z5kOE"
+            alt="Jaishidewal Temple Backdrop"
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover opacity-50 transform scale-103"
+          />
+          {/* Deep dark crimson gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-primary/45"></div>
+        </div>
+
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center space-y-5 animate-fade-in-up">
+          <Badge variant="secondary" className="mb-stack-sm tracking-widest text-primary bg-primary-fixed hover:bg-primary-fixed border border-primary-fixed-dim">
             {siteConfig.established[locale]}
           </Badge>
-          <h1 className="font-serif text-4xl md:text-6xl text-primary mb-stack-lg max-w-4xl mx-auto leading-tight font-bold tracking-tight">
+          
+          <h1 className="font-serif text-display-lg-mobile md:text-display-lg text-white mb-stack-lg max-w-4xl mx-auto leading-tight font-extrabold tracking-tight drop-shadow-md">
             {t.heroTitle}
           </h1>
-          <p className="font-sans text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg leading-relaxed">
+          
+          <p className="font-sans text-body-lg text-white/85 max-w-2xl mx-auto mb-stack-lg leading-relaxed drop-shadow">
             {t.heroSubtitle}
           </p>
+          
           <div className="flex flex-col sm:flex-row justify-center items-center gap-stack-md pt-4">
             <Link
               href={`/${locale}/volunteer`}
-              className="bg-primary text-on-primary font-sans text-label-md px-8 py-4 rounded-md hover:bg-primary-container hover:text-on-primary-container transition-all duration-300 shadow-sm w-full sm:w-auto text-center hover:scale-[1.03]"
+              className="bg-primary text-on-primary font-sans text-label-md px-8 py-4 rounded-md hover:bg-primary-container hover:text-on-primary-container transition-all duration-300 shadow-lg w-full sm:w-auto text-center hover:scale-[1.03]"
             >
               {t.becomeMember}
             </Link>
             <Link
               href={`/${locale}/about`}
-              className="border border-secondary text-secondary bg-surface-bright font-sans text-label-md px-8 py-4 rounded-md hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 w-full sm:w-auto text-center hover:scale-[1.03]"
+              className="border border-white/40 text-white bg-white/10 backdrop-blur-sm font-sans text-label-md px-8 py-4 rounded-md hover:bg-white/20 transition-all duration-300 w-full sm:w-auto text-center hover:scale-[1.03]"
             >
               {t.learnMore}
             </Link>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 opacity-60 animate-bounce">
+          <span className="text-[9px] font-sans tracking-widest text-white/80 uppercase font-semibold">
+            {locale === "en" ? "Scroll Down" : "तल स्क्रोल गर्नुहोस्"}
+          </span>
+          <span className="material-symbols-outlined text-white text-base">expand_more</span>
         </div>
       </section>
 

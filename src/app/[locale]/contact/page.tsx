@@ -27,6 +27,9 @@ export default function ContactPage({ params }: PageProps) {
   const [success, setSuccess] = useState<boolean | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
 
+  // FAQ accordion active index state
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -72,11 +75,42 @@ export default function ContactPage({ params }: PageProps) {
     }
   };
 
+  const faqs = [
+    {
+      q: { en: "How can I volunteer with Himali Pariwar?", ne: "म हिमाली परिवार क्लबमा कसरी स्वयंसेवा गर्न सक्छु?" },
+      a: {
+        en: "You can sign up on our Volunteer page or visit our clubhouse office in Jaishidewal. No prior experience is needed for general tasks.",
+        ne: "तपाईं स्वयंसेवक फारम भर्न सक्नुहुन्छ वा जैसीदेवलमा रहेको हाम्रो कार्यालयमा आउन सक्नुहुन्छ। परम्परागत कामको लागि पूर्व अनुभव आवश्यक छैन।"
+      }
+    },
+    {
+      q: { en: "Where exactly is the office located?", ne: "क्लबको कार्यालय जैसीदेवलमा कहाँ छ?" },
+      a: {
+        en: "Our office is located right next to the historic Jaishidewal Temple in Ward 21, Kathmandu.",
+        ne: "हाम्रो सम्पर्क कार्यालय जैसीदेवल मन्दिरको ठीक पछाडि काठमाडौँ वडा २१ मा रहेको छ।"
+      }
+    },
+    {
+      q: { en: "How does the emergency blood donor matching work?", ne: "आकस्मिक रक्तदाता मिलान सेवाले कसरी काम गर्छ?" },
+      a: {
+        en: "We maintain a database of local volunteers. When an urgent request is received, our coordinator matches the patient's blood type and contacts donors immediately.",
+        ne: "हामीले स्थानीय स्वयंसेवकहरूको रक्तदाता सूची राखेका छौं। आकस्मिक रगत चाहिने बित्तिकै हामी मिल्दो रक्तदातालाई तुरुन्त सम्पर्क गर्छौं।"
+      }
+    },
+    {
+      q: { en: "Are the club's financial audits public?", ne: "के क्लबको वित्तीय लेखापरीक्षण प्रतिवेदन सार्वजनिक हुन्छ?" },
+      a: {
+        en: "Yes, we publish our annual governance and audit reports publicly on our site under transparency logs for public viewing.",
+        ne: "हो, हामी पारदर्शिताका लागि वार्षिक साधारण सभाको लेखापरीक्षण प्रतिवेदन सार्वजनिक रूपमा उपलब्ध गराउँछौं।"
+      }
+    }
+  ];
+
   return (
     <div className="flex flex-col flex-grow">
       {/* Page Header */}
       <section className="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto text-center">
+        <div className="max-w-container-max mx-auto text-center animate-fade-in-up">
           <p className="font-sans text-label-sm text-on-surface-variant mb-stack-md tracking-wider uppercase">
             {t.home} / {t.contact}
           </p>
@@ -96,7 +130,7 @@ export default function ContactPage({ params }: PageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-margin-desktop">
           
           {/* Left Column: Contact Form */}
-          <div>
+          <div className="animate-fade-in-up">
             <Card hoverEffect={false} className="shadow-lg border border-outline">
               <h2 className="font-serif text-title-lg text-primary font-bold border-b border-outline-variant pb-2 mb-stack-md">
                 {locale === "en" ? "Send an Inquiry" : "सन्देश पठाउनुहोस्"}
@@ -136,7 +170,7 @@ export default function ContactPage({ params }: PageProps) {
                     id="contact-type"
                     value={inquiryType}
                     onChange={(e) => setInquiryType(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none font-medium text-xs"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none font-medium text-xs animate-fade-in"
                   >
                     <option value="general">{t.generalInfo}</option>
                     <option value="volunteer">{t.volunteerOps}</option>
@@ -217,7 +251,7 @@ export default function ContactPage({ params }: PageProps) {
           </div>
 
           {/* Right Column: Maps and Location details */}
-          <div className="space-y-stack-lg">
+          <div className="space-y-stack-lg animate-fade-in-up">
             {/* Real Google Maps embed */}
             <div className="rounded-lg overflow-hidden border border-outline-variant shadow-heritage h-72 bg-surface-container-high relative">
               <iframe
@@ -273,6 +307,39 @@ export default function ContactPage({ params }: PageProps) {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-section-gap bg-surface-container-low/40 border-t border-outline-variant">
+        <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop space-y-stack-lg">
+          <div className="text-center space-y-2 mb-6">
+            <Badge variant="primary">{locale === "en" ? "Common Inquiries" : "प्रायः सोधिने प्रश्नहरू"}</Badge>
+            <h2 className="font-serif text-3xl text-primary font-bold">
+              {locale === "en" ? "Frequently Asked Questions" : "जिज्ञासा तथा उत्तरहरू"}
+            </h2>
+          </div>
+
+          <div className="space-y-stack-md mt-6">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="border border-outline-variant rounded-lg bg-surface overflow-hidden shadow-sm">
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full text-left p-4 font-serif text-xs font-semibold text-primary flex justify-between items-center hover:bg-surface-container-low transition-colors focus:outline-none"
+                >
+                  <span>{faq.q[locale]}</span>
+                  <span className="material-symbols-outlined transition-transform duration-300">
+                    {openFaq === idx ? "expand_less" : "expand_more"}
+                  </span>
+                </button>
+                {openFaq === idx && (
+                  <div className="p-4 border-t border-outline-variant/40 font-sans text-xs text-on-surface-variant leading-relaxed animate-fade-in">
+                    {faq.a[locale]}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

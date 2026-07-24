@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Locale, translations } from "@/data/translations";
 import { siteConfig } from "@/config/siteConfig";
+import { Logo } from "@/components/Logo";
 
 interface FooterProps {
   locale: Locale;
@@ -19,10 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           
           {/* Left: Brand Logo & Title */}
           <div className="flex items-center gap-3">
-            {/* Visual Red Ornamental Circle mimicking the logo in screenshot */}
-            <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center text-primary font-bold font-serif text-sm bg-primary-fixed/20">
-              HPC
-            </div>
+            <Logo className="w-10 h-10" />
             <div>
               <Link
                 href={`/${locale}`}

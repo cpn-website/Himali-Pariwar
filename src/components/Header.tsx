@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Locale, translations } from "@/data/translations";
 import { siteConfig } from "@/config/siteConfig";
+import { Logo } from "@/components/Logo";
 
 interface HeaderProps {
   locale: Locale;
@@ -60,9 +61,10 @@ export const Header: React.FC<HeaderProps> = ({ locale }) => {
           {/* Brand Name */}
           <Link
             href={`/${locale}`}
-            className="font-serif text-title-lg font-bold text-primary tracking-tight hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2.5 font-serif text-title-lg font-bold text-primary tracking-tight hover:opacity-90 transition-opacity"
           >
-            {siteConfig.name[locale]}
+            <Logo className="w-8 h-8" />
+            <span>{siteConfig.name[locale]}</span>
           </Link>
 
           {/* Desktop Navigation */}
