@@ -14,11 +14,11 @@ export const Logo: React.FC<LogoProps> = ({ className = "w-10 h-10" }) => {
       aria-hidden="true"
     >
       {/* Outer elegant ring */}
-      <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3" />
-      <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" opacity="0.6" />
+      <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="3" />
+      <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 2" opacity="0.6" />
       
       {/* Sun rising behind the peak (hope, community) */}
-      <circle cx="50" cy="46" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+      <circle cx="50" cy="46" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
       
       {/* Mountain peaks (Himali) */}
       <path d="M50 24 L22 72 L78 72 Z" fill="currentColor" />

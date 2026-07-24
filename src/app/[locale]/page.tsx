@@ -123,7 +123,7 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <div className="flex flex-col flex-grow">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden py-32 md:py-48 border-b border-outline-variant bg-black">
+      <section className="relative overflow-hidden h-[calc(100vh-80px)] border-b border-outline-variant bg-black flex flex-col justify-center">
         {/* Full-width Heritage Backdrop Image */}
         <div className="absolute inset-0 z-0">
           <Image
