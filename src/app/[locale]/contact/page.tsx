@@ -67,7 +67,7 @@ export default function ContactPage({ params }: PageProps) {
         setSuccess(false);
         setErrorMsg(data.error || t.formErrorMsg);
       }
-    } catch (err) {
+    } catch {
       setSuccess(false);
       setErrorMsg(t.formErrorMsg);
     } finally {
@@ -131,19 +131,19 @@ export default function ContactPage({ params }: PageProps) {
           
           {/* Left Column: Contact Form */}
           <div className="animate-fade-in-up">
-            <Card hoverEffect={false} className="shadow-lg border border-outline">
+            <Card hoverEffect={false} className="shadow-lg border border-outline rounded-xl p-stack-lg">
               <h2 className="font-serif text-title-lg text-primary font-bold border-b border-outline-variant pb-2 mb-stack-md">
                 {locale === "en" ? "Send an Inquiry" : "सन्देश पठाउनुहोस्"}
               </h2>
               
               {success === true && (
-                <div className="bg-secondary/10 border border-secondary/20 rounded p-stack-md text-xs text-secondary font-medium mb-stack-md">
+                <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-stack-md text-xs text-secondary font-medium mb-stack-md animate-spring-in">
                   {t.formSuccessMsg}
                 </div>
               )}
 
               {success === false && (
-                <div className="bg-error/10 border border-error/20 rounded p-stack-md text-xs text-error font-medium mb-stack-md">
+                <div className="bg-error/10 border border-error/20 rounded-lg p-stack-md text-xs text-error font-medium mb-stack-md animate-shake">
                   {errorMsg}
                 </div>
               )}
@@ -170,7 +170,7 @@ export default function ContactPage({ params }: PageProps) {
                     id="contact-type"
                     value={inquiryType}
                     onChange={(e) => setInquiryType(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none font-medium text-xs animate-fade-in"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none font-medium text-xs transition-all"
                   >
                     <option value="general">{t.generalInfo}</option>
                     <option value="volunteer">{t.volunteerOps}</option>
@@ -190,7 +190,7 @@ export default function ContactPage({ params }: PageProps) {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                      className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                       placeholder="Gita Maharjan"
                     />
                   </div>
@@ -203,7 +203,7 @@ export default function ContactPage({ params }: PageProps) {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                      className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                       placeholder="98XXXXXXXX"
                     />
                   </div>
@@ -219,7 +219,7 @@ export default function ContactPage({ params }: PageProps) {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                     placeholder="name@email.com"
                   />
                 </div>
@@ -234,7 +234,7 @@ export default function ContactPage({ params }: PageProps) {
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                     placeholder={locale === "en" ? "Type your inquiry details..." : "सोधपुछको विस्तृत विवरण लेख्नुहोस्..."}
                   ></textarea>
                 </div>
@@ -242,7 +242,7 @@ export default function ContactPage({ params }: PageProps) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-primary text-on-primary font-sans text-label-md py-3 rounded-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm disabled:opacity-50"
+                  className="w-full bg-primary text-on-primary font-sans text-label-md py-3 rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-all hover:scale-[1.01] shadow-md disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   {submitting ? t.loading : t.send}
                 </button>
@@ -253,7 +253,7 @@ export default function ContactPage({ params }: PageProps) {
           {/* Right Column: Maps and Location details */}
           <div className="space-y-stack-lg animate-fade-in-up">
             {/* Real Google Maps embed */}
-            <div className="rounded-lg overflow-hidden border border-outline-variant shadow-heritage h-72 bg-surface-container-high relative">
+            <div className="rounded-xl overflow-hidden border border-outline-variant shadow-heritage h-72 bg-surface-container-high relative">
               <iframe
                 title="Himali Pariwar Club Jaishidewal Location Map"
                 src={siteConfig.googleMapEmbedUrl}
@@ -266,7 +266,7 @@ export default function ContactPage({ params }: PageProps) {
               ></iframe>
             </div>
 
-            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-stack-lg space-y-4 text-xs">
+            <div className="bg-surface-container-low border border-outline-variant rounded-xl p-stack-lg space-y-4 text-xs">
               <h3 className="font-serif text-title-lg text-secondary font-bold border-b border-outline-variant pb-2">
                 {locale === "en" ? "Office Location Details" : "सम्पर्क ठेगाना विवरण"}
               </h3>
@@ -322,10 +322,10 @@ export default function ContactPage({ params }: PageProps) {
 
           <div className="space-y-stack-md mt-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="border border-outline-variant rounded-lg bg-surface overflow-hidden shadow-sm">
+              <div key={idx} className="border border-outline-variant rounded-xl bg-surface overflow-hidden shadow-sm">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full text-left p-4 font-serif text-xs font-semibold text-primary flex justify-between items-center hover:bg-surface-container-low transition-colors focus:outline-none"
+                  className="w-full text-left p-4 font-serif text-xs font-semibold text-primary flex justify-between items-center hover:bg-surface-container-low transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
                 >
                   <span>{faq.q[locale]}</span>
                   <span className="material-symbols-outlined transition-transform duration-300">

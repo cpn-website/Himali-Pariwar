@@ -1,10 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import { Metadata } from "next";
 import { Locale, translations } from "@/data/translations";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { HeritageDivider } from "@/components/ui/HeritageDivider";
 import { siteConfig } from "@/config/siteConfig";
 
 interface PageProps {

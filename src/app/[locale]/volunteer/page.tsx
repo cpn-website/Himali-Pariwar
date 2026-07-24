@@ -3,8 +3,6 @@
 import React, { useState, use } from "react";
 import { Locale, translations } from "@/data/translations";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { siteConfig } from "@/config/siteConfig";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -64,7 +62,7 @@ export default function VolunteerPage({ params }: PageProps) {
         setSuccess(false);
         setErrorMsg(data.error || t.formErrorMsg);
       }
-    } catch (err) {
+    } catch {
       setSuccess(false);
       setErrorMsg(t.formErrorMsg);
     } finally {
@@ -76,7 +74,7 @@ export default function VolunteerPage({ params }: PageProps) {
     <div className="flex flex-col flex-grow">
       {/* Page Header */}
       <section className="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto text-center">
+        <div className="max-w-container-max mx-auto text-center animate-fade-in-up">
           <p className="font-sans text-label-sm text-on-surface-variant mb-stack-md tracking-wider uppercase">
             {t.home} / {t.volunteer}
           </p>
@@ -95,77 +93,64 @@ export default function VolunteerPage({ params }: PageProps) {
       <section className="py-section-gap max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-margin-desktop">
           {/* Left Column: Benefits & Testimonials */}
-          <div className="space-y-stack-lg">
+          <div className="space-y-stack-lg animate-fade-in-up">
             <div className="space-y-stack-md">
               <h2 className="font-serif text-headline-md text-primary font-bold">
-                {locale === "en" ? "Why Volunteer With Us?" : "किन हामीसँग स्वयंसेवा गर्ने?"}
+                {locale === "en" ? "Why Volunteer with Us?" : "हामीसँग किन आबद्ध हुने?"}
               </h2>
-              <p className="font-sans text-body-md text-on-surface-variant leading-relaxed">
+              <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
                 {locale === "en"
-                  ? "For over four decades, the strength of Himali Pariwar Club has resided in the hearts of our volunteers. By joining our team, you gain hands-on training from master stonecarvers, participate in organizing major cultural festivals, and receive certification as an emergency first responder."
-                  : "४० वर्षभन्दा बढी समयदेखि हाम्रो क्लबको बल हाम्रा स्वयंसेवकहरू नै हुन्। हाम्रो टोलीमा सामेल भएर तपाईंले सम्पदा पुनर्निर्माण सम्बन्धी परम्परागत तालिम पाउनुहुनेछ, जात्राहरूको आयोजनामा भाग लिनुहुनेछ र प्राथमिक स्वास्थ्य उद्धारकर्ताको प्रमाणपत्र प्राप्त गर्नुहुनेछ।"}
+                  ? "For over four decades, our members have been at the frontlines of protecting Ward 21's historic temples and supporting families through emergency health programs. As a volunteer, you gain hands-on training and make a direct local impact."
+                  : "४० वर्षभन्दा बढी समयदेखि जैसीदेवलका बासिन्दाहरूको हितमा क्रियाशील यस क्लबमा स्वयंसेवक बन्दा तपाईंले प्रत्यक्ष सामुदायिक प्रभाव पार्न र परम्परागत कला सिक्ने अवसर पाउनुहुनेछ।"}
               </p>
             </div>
 
-            {/* Testimonial Quote */}
-            <Card hoverEffect={false} className="border-l-4 border-secondary/70 bg-secondary/5 py-4 pl-6 pr-4 rounded-r">
-              <p className="font-serif text-xs text-on-surface-variant italic leading-relaxed">
-                {locale === "en"
-                  ? '"Volunteering to document our elders\' oral histories opened my eyes to the depth of Jaishidewal. It is more than just stone and timber; it is the living spirit of our neighborhood."'
-                  : '"जेष्ठ नागरिकहरूबाट हाम्रो इतिहास संकलन गर्ने स्वयंसेवा कार्यले मलाई जैसीदेवलको ऐतिहासिक गहराई बुझ्न मद्दत गर्यो। यो केवल मन्दिर मात्र होइन, यो हाम्रो समुदायको मुटु हो। ९"'}
-              </p>
-              <p className="font-sans text-[10px] text-secondary font-bold uppercase tracking-wider mt-3">
-                — Sunita Maharjan, {locale === "en" ? "Volunteer Coordinator" : "स्वयंसेवक संयोजक"}
-              </p>
-            </Card>
-
-            {/* Membership tiers */}
-            <div className="space-y-3">
-              <h3 className="font-serif text-title-lg text-secondary font-bold border-b border-outline-variant pb-2">
-                {locale === "en" ? "Volunteering Pillars" : "स्वयंसेवाका मुख्य क्षेत्रहरू"}
+            <div className="space-y-stack-md border-t border-outline-variant/65 pt-6">
+              <h3 className="font-serif text-title-lg text-secondary font-bold">
+                {locale === "en" ? "Volunteer Benefits" : "आबद्ध हुनुका फाइदाहरू"}
               </h3>
               
-              <div className="space-y-2.5">
-                <div className="flex gap-2 items-start text-xs text-on-surface-variant">
-                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+              <ul className="space-y-3 font-sans text-xs text-on-surface-variant font-medium">
+                <li className="flex gap-2 items-start">
+                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">verified</span>
                   <div>
-                    <strong>{locale === "en" ? "Heritage & Craft:" : "सांस्कृतिक सम्पदा पुनर्निर्माण:"}</strong>{" "}
-                    {locale === "en" ? "Assist in paving, brick cleaning, wood oiling, and documenting architecture." : "टुँडाल संरक्षण, सरसफाई र डिजिटल नक्सा निर्माणमा सहयोग।"}
+                    <strong>{locale === "en" ? "Official Appreciation Certificate:" : "स्वयंसेवक प्रमाणपत्र:"}</strong>
+                    <p className="mt-0.5">{locale === "en" ? "Receive an official signed certificate documenting your service hours for your resume." : "क्लबद्वारा प्रदान गरिने औपचारिक सेवा प्रमाणपत्र प्राप्त गर्नुहोस्।"}</p>
                   </div>
-                </div>
-                <div className="flex gap-2 items-start text-xs text-on-surface-variant">
-                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                </li>
+                <li className="flex gap-2 items-start">
+                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">engineering</span>
                   <div>
-                    <strong>{locale === "en" ? "Emergency & Health:" : "आपतकालीन स्वास्थ्य सहायता:"}</strong>{" "}
-                    {locale === "en" ? "Join the donor database or first aid marshal teams for public events." : "रक्तदाता लखमा सहभागी हुने वा जात्राहरूमा प्राथमिक उपचार टोलीमा रहने।"}
+                    <strong>{locale === "en" ? "Skills Training Workshops:" : "शिल्प र कौशल तालिम:"}</strong>
+                    <p className="mt-0.5">{locale === "en" ? "Free access to traditional woodcarving workshops, music modules, and first-aid drills." : "धिमे बाजा, चर्या नृत्य र विपद् व्यवस्थापन सम्बन्धी निःशुल्क प्रशिक्षणमा सहभागिता।"}</p>
                   </div>
-                </div>
-                <div className="flex gap-2 items-start text-xs text-on-surface-variant">
-                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                </li>
+                <li className="flex gap-2 items-start">
+                  <span className="material-symbols-outlined text-primary text-sm mt-0.5">diversity_3</span>
                   <div>
-                    <strong>{locale === "en" ? "Youth Mentorship:" : "युवा खेलकुद तथा तालिम:"}</strong>{" "}
-                    {locale === "en" ? "Help coordinate local table tennis leagues, runs, and classes." : "फुटबल कप र दैनिक टेबल टेनिस तालिम आयोजनामा सहयोग।"}
+                    <strong>{locale === "en" ? "Community Support Network:" : "सामुदायिक सम्बन्ध:"}</strong>
+                    <p className="mt-0.5">{locale === "en" ? "Join a network of 150+ active members dedicated to cultural pride and mutual help." : "जैसीदेवलका १५०+ सक्रिय स्वयंसेवकहरूको सञ्जालमा जोडिनुहोस्।"}</p>
                   </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
 
-          {/* Right Column: Sign Up Form */}
-          <div>
-            <Card hoverEffect={false} className="shadow-lg border border-outline bg-surface-container-low/30">
-              <h3 className="font-serif text-title-lg text-primary font-bold border-b border-outline-variant pb-2 mb-stack-md">
-                {locale === "en" ? "Application Portal" : "आवेदन फारम"}
-              </h3>
+          {/* Right Column: Volunteer Form */}
+          <div className="animate-fade-in-up">
+            <Card hoverEffect={false} className="shadow-lg border border-outline rounded-xl p-stack-lg">
+              <h2 className="font-serif text-title-lg text-primary font-bold border-b border-outline-variant pb-2 mb-stack-md">
+                {locale === "en" ? "Volunteer Application Form" : "आवेदन फारम"}
+              </h2>
               
               {success === true && (
-                <div className="bg-secondary/10 border border-secondary/20 rounded p-stack-md text-xs text-secondary font-medium mb-stack-md">
+                <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-stack-md text-xs text-secondary font-medium mb-stack-md animate-spring-in">
                   {t.formSuccessMsg}
                 </div>
               )}
 
               {success === false && (
-                <div className="bg-error/10 border border-error/20 rounded p-stack-md text-xs text-error font-medium mb-stack-md">
+                <div className="bg-error/10 border border-error/20 rounded-lg p-stack-md text-xs text-error font-medium mb-stack-md animate-shake">
                   {errorMsg}
                 </div>
               )}
@@ -194,7 +179,7 @@ export default function VolunteerPage({ params }: PageProps) {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                     placeholder="e.g. Ram Bahadur Maharjan"
                   />
                 </div>
@@ -210,7 +195,7 @@ export default function VolunteerPage({ params }: PageProps) {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                      className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                       placeholder="name@email.com"
                     />
                   </div>
@@ -223,7 +208,7 @@ export default function VolunteerPage({ params }: PageProps) {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                      className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                       placeholder="98XXXXXXXX"
                     />
                   </div>
@@ -237,7 +222,7 @@ export default function VolunteerPage({ params }: PageProps) {
                     id="vol-interest"
                     value={interestArea}
                     onChange={(e) => setInterestArea(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none font-medium"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none font-medium"
                   >
                     <option value="heritage">{locale === "en" ? "Heritage Preservation" : "सम्पदा संरक्षण"}</option>
                     <option value="health">{locale === "en" ? "Health & Emergency Responders" : "आपतकालीन स्वास्थ्य टोली"}</option>
@@ -248,7 +233,7 @@ export default function VolunteerPage({ params }: PageProps) {
 
                 <div>
                   <label className="block font-sans font-bold text-on-surface mb-unit" htmlFor="vol-msg">
-                    {locale === "en" ? "Statement of Motivation" : "प्ररित हुनुको मुख्य कारण"} <span className="text-error">*</span>
+                    {locale === "en" ? "Statement of Motivation" : "प्रेरित हुनुको मुख्य कारण"} <span className="text-error">*</span>
                   </label>
                   <textarea
                     id="vol-msg"
@@ -256,7 +241,7 @@ export default function VolunteerPage({ params }: PageProps) {
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant text-on-surface rounded p-3 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none"
+                    className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg p-3 focus:ring-2 focus:ring-primary focus:outline-none"
                     placeholder={locale === "en" ? "Briefly explain why you want to volunteer or join..." : "हामीसँग आबद्ध हुन चाहनुको छोटो कारण..."}
                   ></textarea>
                 </div>
@@ -264,7 +249,7 @@ export default function VolunteerPage({ params }: PageProps) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-primary text-on-primary font-sans text-label-md py-3 rounded-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm disabled:opacity-50"
+                  className="w-full bg-primary text-on-primary font-sans text-label-md py-3 rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-all hover:scale-[1.01] shadow-md disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   {submitting ? t.loading : t.submit}
                 </button>

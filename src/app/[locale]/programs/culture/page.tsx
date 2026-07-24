@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { Locale, translations } from "@/data/translations";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { siteConfig } from "@/config/siteConfig";
 

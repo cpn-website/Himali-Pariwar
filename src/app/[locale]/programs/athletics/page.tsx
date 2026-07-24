@@ -22,7 +22,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function AthleticsProgramPage({ params }: PageProps) {
   const resolvedParams = await params;
   const locale = (resolvedParams.locale || "en") as Locale;
-  const t = translations[locale];
 
   // Sports disciplines list
   const sports = [

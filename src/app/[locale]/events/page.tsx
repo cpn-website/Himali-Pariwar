@@ -6,7 +6,6 @@ import { Locale, translations } from "@/data/translations";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { eventsData, EventItem } from "@/data/events";
-import { siteConfig } from "@/config/siteConfig";
 
 interface PageProps {
   params: Promise<{ locale: string }>;

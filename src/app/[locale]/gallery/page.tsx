@@ -4,9 +4,7 @@ import React, { useState, use } from "react";
 import Image from "next/image";
 import { Locale, translations } from "@/data/translations";
 import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
 import { galleryData, GalleryItem } from "@/data/gallery";
-import { siteConfig } from "@/config/siteConfig";
 
 interface PageProps {
   params: Promise<{ locale: string }>;

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Locale } from "@/data/translations";
+import { PageTransition } from "@/components/ui/PageTransition";
 import "../globals.css";
 
 interface LayoutProps {
@@ -34,7 +35,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       </head>
       <body className="min-h-full flex flex-col pt-20">
         <Header locale={locale} />
-        <main className="flex-grow flex flex-col">{children}</main>
+        <main className="flex-grow flex flex-col">
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </main>
         <Footer locale={locale} />
       </body>
     </html>
